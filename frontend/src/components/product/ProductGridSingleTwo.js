@@ -51,7 +51,7 @@ const ProductGridSingleTwo = ( {
 						<Link to={ process.env.PUBLIC_URL + "/product/" + product.id }>
 							<img
 								className="default-img"
-								style={ { width: "100%", height: "270px", objectFit: "cover" } }
+								style={ { width: "100%", height: "270px", objectFit: "contain" } }
 								src={ buildImage( product.pro_avatar ) }
 								alt=""
 							/>

@@ -58,7 +58,7 @@ const ProductGridListSingle = ( {
 								className="default-img"
 								src={ buildImage( product.pro_avatar ) }
 								alt={ buildImage( product.pro_avatar ) }
-								style={ { width: "100%", height: "270px", objectFit: "cover" } }
+								style={ { width: "100%", height: "270px", objectFit: "contain" } }
 								onError={ onErrorImage }
 							/>
 							{ product?.product_images?.length > 0 ? (
