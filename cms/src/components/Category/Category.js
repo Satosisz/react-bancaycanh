@@ -55,7 +55,6 @@ export const Categories = ( props ) =>
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th className="text-nowrap">Hình ảnh</th>
 								<th className="text-nowrap">TÊN LOẠI</th>
 								<th className="text-nowrap">SLUG</th>
 								<th className="text-nowrap">THỜI GIAN</th>
@@ -69,11 +68,6 @@ export const Categories = ( props ) =>
 									return (
 										< tr key={ key } className="table-product">
 											<td className="text-gray-900 text-center">{  props.paging.pageNumber * props.paging.pageSize + ( key + 1 ) }</td>
-											<td className="d-flex align-items-center">
-												<img width="70" height="70"
-													style={ { border: "0.5px solid gray", borderRadius: '5px' } }
-													src={ buildImage(item.c_avatar) } alt={ item.c_name } onError={ onErrorImage } />
-											</td>
 											<td className="text-gray-900">
 												<span className="text-break" style={ { minWidth: '100px' } }>{ item.c_name }</span>
 											</td>

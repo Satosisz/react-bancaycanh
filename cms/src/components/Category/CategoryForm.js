@@ -1,20 +1,17 @@
 // @ts-nocheck
-import { Form, Input, Select, Switch, Upload } from 'antd';
+import { Form, Input } from 'antd';
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import React from 'react';
 import Widget from '../Widget/Widget';
 import { useForm } from 'antd/lib/form/Form';
 import { toSlug } from '../../helpers/common/common';
-import { PlusOutlined } from '@ant-design/icons';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { showCategoryDetail, submitForms } from '../../services/categoryService';
-import { buildImage } from '../../services/common';
 import Breadcrumbs from '../Breadbrumbs/Breadcrumbs';
 export const CategoryForm = ( props ) =>
 {
 	const [ form ] = useForm();
-	const [ files, setFiles ] = useState( [] );
 	const [ data, setData ] = useState( null );
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -35,23 +32,12 @@ export const CategoryForm = ( props ) =>
 	{
 		if ( data )
 		{
-			let file = [];
-			file.push( {
-				uid: file.length,
-				name: data.c_avatar,
-				status: 'done',
-				url: buildImage(data.c_avatar),
-				default: true
-			} );
 			let formValue = {
 				c_name: data.c_name,
-				description: data.description,
 				status: data.status || 0,
 				hot: data.hot === 1 ? true : false,
 				c_slug: data.c_slug,
-				image: file
 			}
-			setFiles(file)
 			form.setFieldsValue( formValue )
 
 		}
@@ -75,7 +61,7 @@ export const CategoryForm = ( props ) =>
 
 	const submitForm = async ( e ) =>
 	{
-		await submitForms( id, files, e, dispatch, history );
+		await submitForms( id, e, dispatch, history );
 	}
 
 	const resetForm = () =>
@@ -98,16 +84,6 @@ export const CategoryForm = ( props ) =>
 			}
 			form.setFieldsValue( fieldValue );
 		}
-	}
-
-	const normFile = ( e ) =>
-	{
-		if ( e?.fileList )
-		{
-			let fileChoose = e?.fileList;
-			setFiles( fileChoose );
-		}
-		return e?.fileList;
 	}
 
 	const routes = [
@@ -141,23 +117,6 @@ export const CategoryForm = ( props ) =>
 							<Input className='form-control' placeholder='Nhập tên loại' />
 						</Form.Item>
 .
-
-						<Form.Item
-							label="Hình ảnh"
-							name="image"
-							accept="images/**"
-							className='d-block'
-							valuePropName="fileList"
-							fileList={ files }
-							getValueFromEvent={ normFile }
-						>
-							<Upload action="/upload" listType="picture-card">
-								{ files.length < 1 && <div>
-									<PlusOutlined />
-									<div style={ { marginTop: 8 } }>Tải ảnh lên</div>
-								</div> }
-							</Upload>
-						</Form.Item>
 
 						{/* <Form.Item name="hot" label="Is hot?" valuePropName="checked">
 							<Switch />

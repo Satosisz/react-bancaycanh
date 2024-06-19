@@ -74,16 +74,14 @@ export const getCategoriesByFilter = async ( params, dispatch ) =>
 	}
 }
 
-export const submitForms = async ( id = null, files, e, dispatch, history ) =>
+export const submitForms = async ( id = null, e, dispatch, history ) =>
 {
 	try
 	{
 		dispatch( toggleShowLoading( true ) );
-		let avatar = await uploadApi.uploadFile(files)
 		await timeDelay( 500 );
 		let formValue = { ...e };
 		delete formValue.image;
-		formValue.c_avatar = avatar;
 		formValue.hot = formValue.hot ? 1 : -1;
 		let response;
 		if ( id )
