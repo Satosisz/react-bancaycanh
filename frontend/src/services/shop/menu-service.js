@@ -1,11 +1,15 @@
 import { getMethod } from '../index'
 
-export const sda = async ( params) =>
-{
-	await getMethod('product', params);
-}
+export const MENU_SERVICE = {
+	list: async () => {
+		try {
+			const response = await getMethod('menu');
 
-export const sad = async ( id, params ) =>
-{
-	await getMethod(`product/show/${id}`, params);
+			if (response?.status === 'success') {
+				return response?.content;
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
 }

@@ -22,11 +22,7 @@ axiosClient.interceptors.response.use(
 		// Any status code that lie within the range of 2xx cause this function to trigger
 		// Do something with response data
 		let data = response?.data;
-		if ( ( data && response?.status === 403 ) )
-		{
-			localStorage.clear();
-			window.location.href = `/auth`;
-		}
+
 
 		return response?.data;
 	},
@@ -40,11 +36,7 @@ axiosClient.interceptors.response.use(
 		}
 
 		let dataError = error.response?.data || null;
-		if ( ( dataError && error.response?.status === 403 ) )
-		{
-			localStorage.clear();
-			window.location.href = `/auth`;
-		}
+		
 		// Any status codes that falls outside the range of 2xx cause this function to trigger
 		// Do something with response error
 		return Promise.reject( error.response?.data )

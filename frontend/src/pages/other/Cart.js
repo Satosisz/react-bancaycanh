@@ -37,7 +37,7 @@ const Cart = ( {
 	return (
 		<Fragment>
 			<MetaTags>
-				<title>VITAGREEN | Cart</title>
+				<title>AOBONGDA | Cart</title>
 				<meta
 					name="description"
 					content="Cart page of flone react minimalist eCommerce template."
@@ -99,7 +99,7 @@ const Cart = ( {
 																		to={
 																			process.env.PUBLIC_URL +
 																			"/product/" +
-																			cartItem.id
+																			cartItem.pro_slug
 																		}
 																	>
 																		<img
@@ -116,10 +116,12 @@ const Cart = ( {
 																		to={
 																			process.env.PUBLIC_URL +
 																			"/product/" +
-																			cartItem.id
+																			cartItem.pro_slug
 																		}
 																	>
-																		{ cartItem.pro_name }
+																		{cartItem.pro_name} <br />
+																		<p>Màu: {cartItem.selectedProductColor}</p>
+																		<p>Size: {cartItem.selectedProductSize}</p>
 																	</Link>
 																</td>
 

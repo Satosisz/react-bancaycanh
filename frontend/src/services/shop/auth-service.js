@@ -2,24 +2,24 @@ import { getMethod, postMethod, putMethod } from "../api-service"
 
 export const Auth_Service = {
 	login: async (data) => {
-		return await postMethod('user/auth/login', data);
+		return await postMethod('login', data);
 	},
 	resetPassword: async (data) => {
-		return await postMethod('user/auth/change-password', data);
+		return await postMethod('change-password', data);
 	},
 	register: async (data) => {
-		return await postMethod('user/auth/register', data);
+		return await postMethod('register', data);
 	},
 	profile: async () => {
-		return await getMethod('user/auth/profile');
+		return await getMethod('profile');
 	},
 	updateProfile: async (data) => {
-		return await putMethod('user/auth/profile', data);
+		return await putMethod('profile', data);
 	},
 	changePassword: async (data) => {
-		return await putMethod('user/auth/change-password', data);
+		return await putMethod('change-password', data);
 	},
 	reset: async (data) => {
-		return await putMethod('user/auth/password/reset', data);
+		return await putMethod('password/reset', data);
 	}
 }

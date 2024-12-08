@@ -1,3 +1,5 @@
+import { Cart_Service } from "../../services/shop/cart-service";
+
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DECREASE_QUANTITY = "DECREASE_QUANTITY";
 export const DELETE_FROM_CART = "DELETE_FROM_CART";
@@ -8,16 +10,23 @@ export const addToCart = (
   item,
   addToast,
   quantityCount,
+  selectedProductColor,
+  selectedProductSize
 ) => {
-  return dispatch => {
+  return async dispatch => {
     if (addToast) {
       addToast("Thêm thành công vào giỏ hàng", { appearance: "success", autoDismiss: true });
     }
+
+		await Cart_Service.addToCartBuyer(item);
+
     dispatch({
       type: ADD_TO_CART,
       payload: {
         ...item,
-        quantity: quantityCount
+        quantity: quantityCount,
+        selectedProductColor: selectedProductColor,
+        selectedProductSize: selectedProductSize
       }
     });
   };
